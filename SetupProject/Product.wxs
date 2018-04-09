@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Name="Spira Quality Center (QC) Importer" Id="C74E03BC-3B41-42DF-A8DC-6D8457575F98"
+   UpgradeCode="4AD33B9D-6270-4700-BFEA-A0C07C2EE4DF"
+   Language="1033" Version="3.0.1.0" Manufacturer="Inflectra">
+
+    <Package Id="*" InstallerVersion="300" Compressed="yes"
+             Keywords="Requirements Management, Test Case Management, Defect/Bug/Issue Tracking"
+             Description="SpiraTest: Migration Tool for HP Mercury QualityCenter 9.0+" />
+
+    <Condition Message=
+"You need to be an administrator to install this product.">
+      Privileged
+    </Condition>
+    <Condition Message=
+"This setup requires the .NET Framework 4.0 or higher.">
+      <![CDATA[MsiNetAssemblySupport >= "4.0.30319"]]>
+    </Condition>
+
+    <Media Id="1" Cabinet="Importer.cab" EmbedCab="yes" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="D_MyCompany" Name="Inflectra">
+          <Directory Id="INSTALLDIR" Name="Quality Center Importer">
+            <Component Id="C_MainExecutable" Guid="92600D17-F099-4D4F-9DC4-8679A559D3F4">
+              <File Id="F_QualityCenterImporter_exe" Name="QualityCenterImporter.exe"
+               Source="..\QualityCenterImporter\bin\Release\QualityCenterImporter.exe" Vital="yes">
+                <Shortcut Id="S_ApplicationShortcut" Directory="ProgramMenuProductDirTools"
+                 Name="Quality Center Importer" WorkingDirectory="INSTALLDIR"
+                 Icon="App.ico" IconIndex="0" Advertise="yes" />
+              </File>
+              <File Id="F_QualityCenterImporter_exe_config" Name="QualityCenterImporter.exe.config"
+                     Source="..\QualityCenterImporter\bin\Release\QualityCenterImporter.exe.config" />
+              <RemoveFolder Id="INSTALLDIR" On="uninstall" />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ProgramMenuDir" Name="Inflectra">
+          <Directory Id="ProgramMenuProductDir" Name="SpiraTest">
+            <Directory Id="ProgramMenuProductDirTools" Name="Tools">
+              <Component Id="C_ProgramMenuDir" Guid="03007483-2267-422C-AB6F-707590E09A73">
+                <RemoveFolder Id="RemoveProgramMenuDir" Directory="ProgramMenuDir" On="uninstall" />
+                <RemoveFolder Id="RemoveProgramMenuProductDir" Directory="ProgramMenuProductDir" On="uninstall" />
+                <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]"
+                 Type="string" Value="" KeyPath="yes" />
+                <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <Icon Id="App.ico" SourceFile="App.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="App.ico" />
+
+    <Feature Id="Complete" Level="1">
+      <ComponentRef Id="C_MainExecutable" />
+      <ComponentRef Id="C_ProgramMenuDir" />
+    </Feature>
+
+    <WixVariable Id="WixUIBannerBmp" Value="bannrbmp.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="dlgbmp.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+    <UIRef Id="WixUI_InstallDir" />
+
+    <!-- This will ensure that the LaunchConditions
+  are executed only after searching -->
+    <InstallUISequence>
+      <LaunchConditions After="AppSearch" />
+    </InstallUISequence>
+    <InstallExecuteSequence>
+      <LaunchConditions After="AppSearch" />
+    </InstallExecuteSequence>
+
+  </Product>
+</Wix>

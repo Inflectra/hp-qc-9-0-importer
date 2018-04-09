@@ -1,0 +1,2 @@
+C:\Git\SpiraTeamAddOns\Importers\QualityCenter 9.0 Importer\QualityCenterImporter\bin\Debug\QualityCenterImporter.exe.config
+C:\Git\SpiraTeamAddOns\Importers\QualityCenter 9.0 Importer\QualityCenterImporter\obj\Debug\QualityCenterImporter.csproj.ResolveComReference.cache

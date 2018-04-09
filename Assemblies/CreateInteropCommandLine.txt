@@ -1,0 +1,2 @@
+cd "C:\Subversion\Projects\SpiraTeam Add Ons\Trunk\Importers\QualityCenter 9.0 Importer\Assemblies"
+tlbimp /out:Interop.HP.QC.SiteAdmin.dll /namespace:HP.QualityCenter.SiteAdmin /asmversion:9.0.0.0 SAClient.dll 
