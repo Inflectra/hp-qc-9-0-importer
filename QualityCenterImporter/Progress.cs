@@ -592,7 +592,7 @@ namespace Inflectra.SpiraTest.AddOns.QualityCenterImporter
                         //Add to mapping
                         if (!this.customPropertyMapping.ContainsKey(Utils.CUSTOM_FIELD_QC_DEFECT_ID))
                         {
-                            this.customPropertyMapping.Add(Utils.CUSTOM_FIELD_QC_DEFECT_ID, propertyNumber);
+                            this.customPropertyMapping.Add(Utils.CUSTOM_FIELD_QC_DEFECT_ID, propertyNumber + 1);
                         }
                     }
                 }
@@ -615,7 +615,7 @@ namespace Inflectra.SpiraTest.AddOns.QualityCenterImporter
                         //Add to mapping
                         if (!this.customPropertyMapping.ContainsKey(Utils.CUSTOM_FIELD_QC_TEST_ID))
                         {
-                            this.customPropertyMapping.Add(Utils.CUSTOM_FIELD_QC_TEST_ID, propertyNumber);
+                            this.customPropertyMapping.Add(Utils.CUSTOM_FIELD_QC_TEST_ID, propertyNumber + 1);
                         }
                     }
                 }
